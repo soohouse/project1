@@ -79,6 +79,12 @@ public class BoardController extends HttpServlet {
 				dp.forward(request, response);
 				break;
 				
+				
+				
 	}
 }
 }
+
+
+
+//깃허브가 잘 되나~
