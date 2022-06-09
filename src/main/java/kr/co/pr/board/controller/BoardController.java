@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.pr.board.model.IBoardDAO;
 import kr.co.pr.board.service.ContentService;
+import kr.co.pr.board.service.DeleteService;
 import kr.co.pr.board.service.IBoardService;
 import kr.co.pr.board.service.ListService;
+import kr.co.pr.board.service.ModifyService;
+import kr.co.pr.board.service.UpdateService;
 import kr.co.pr.board.service.WriterService;
 
 
@@ -60,7 +63,7 @@ public class BoardController extends HttpServlet {
 				sv = new WriterService();
 				sv.execute(request, response);
 				
-				response.sendRedirect("/WebTemp/board_list.Board");
+				response.sendRedirect("/WebTemp/board_list.jsp");
 				break;
 				
 			case "boardlist":
@@ -75,8 +78,29 @@ public class BoardController extends HttpServlet {
 				System.out.println("글 상세 보기 요청");
 				sv = new ContentService();
 				sv.execute(request, response);
-				dp = request.getRequestDispatcher("/WepTemp/board_content.jsp");
+				dp = request.getRequestDispatcher("board/board_content.jsp");
 				dp.forward(request, response);
+				break;
+			
+			case "modify":
+				System.out.println("글 수정 페이지 이동");
+				sv = new ModifyService();
+				sv.execute(request, response);
+				dp = request.getRequestDispatcher("board/board_modify.jsp");
+				dp.forward(request, response);
+				break;
+				
+			case "update":
+				System.out.println("글 수정 요청");
+				sv = new UpdateService();
+				sv.execute(request, response);
+				response.sendRedirect("WebTemp/board_list.board");
+				
+			case "delete":
+				System.out.println("삭제 요청");
+				sv = new DeleteService();
+				sv.execute(request, response);
+				response.sendRedirect("/WebTemp/board_list.board");
 				break;
 				
 				

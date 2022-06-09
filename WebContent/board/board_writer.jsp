@@ -27,7 +27,7 @@
     <section>
         <div class="container" style="margin-top: 5%;">
             <div class="row">
-                <form action="/WebTemp/regist.board" method="post">
+                <form action="/WebTemp/list.board" method="post">
                     <table class="table table-striped" >
                         <thead>
                             <tr>
