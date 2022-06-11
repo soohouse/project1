@@ -12,6 +12,10 @@
 	
 	--%>
 	
+	<%--
+		board content 연결되는지 확인하고, 수정하기
+	 --%>
+	
 	
     
 <!DOCTYPE html>
