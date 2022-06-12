@@ -63,7 +63,7 @@ public class BoardController extends HttpServlet {
 				sv = new WriterService();
 				sv.execute(request, response);
 				
-				response.sendRedirect("/WebTemp/board_list.jsp");
+				response.sendRedirect("/WebTemp/boardlist.board");
 				break;
 				
 			case "boardlist":
@@ -94,13 +94,14 @@ public class BoardController extends HttpServlet {
 				System.out.println("글 수정 요청");
 				sv = new UpdateService();
 				sv.execute(request, response);
-				response.sendRedirect("/WebTemp/board.board?bId=" + request.getParameter("bId"));
+				response.sendRedirect("/WebTemp/boardlist.board");
+				break;
 				
 			case "delete":
-				System.out.println("삭제 요청");
+				System.out.println("글 삭제 요청");
 				sv = new DeleteService();
 				sv.execute(request, response);
-				response.sendRedirect("/WebTemp/board_list.board");
+				response.sendRedirect("/WebTemp/boardlist.board");
 				break;
 				
 				

@@ -9,16 +9,13 @@ public class UpdateService implements IBoardService {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			int bId = Integer.parseInt(request.getParameter("bId"));
+	
+			
 			String title = request.getParameter("bTitle");
 			String content = request.getParameter("bContent");
+			int bId = Integer.parseInt(request.getParameter("bId"));
 			
 			BoardDAO.getInstance().updateBoard(title, content, bId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
+	
+}
 }

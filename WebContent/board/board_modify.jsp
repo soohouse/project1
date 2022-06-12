@@ -49,8 +49,8 @@
                         <!--구현로직: 버튼은 온클릭을 사용하던 자바스크립트를 이용해야 합니다-->
                         <div class="form-group">
                             <button type="button" class="btn btn-success" onclick="location.href='/WebTemp/boardlist.board'">목록</button>
-                            <button type="submit" class="btn btn-info" onclick="location.href='/WebTemp/boardlist.board'">수정</button>
-                            <button type="button" class="btn btn-default" onclick="location.href='board_list.jsp'">삭제</button>
+                            <button type="submit" class="btn btn-info"  onclick="return confirm('수정하시겠습니까?')">수정</button>
+                            
                         </div>
 
                     </form>

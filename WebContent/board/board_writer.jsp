@@ -27,7 +27,7 @@
     <section>
         <div class="container" style="margin-top: 5%;">
             <div class="row">
-                <form action="/WebTemp/list.board" method="post">
+                <form action="/WebTemp/regist.board" method="post">
                     <table class="table table-striped" >
                         <thead>
                             <tr>
@@ -47,7 +47,7 @@
                         </tbody>
                     </table>
                     
-                    <input type="button" class="btn btn-primary pull-left"  value="목록">
+                    <input type="button" class="btn btn-primary pull-left" onclick="location.href='/WebTemp/boardlist.board'" value="목록">
                     <input type="submit" class="btn btn-primary pull-right"  value="글쓰기">
                 </form>
             </div>
