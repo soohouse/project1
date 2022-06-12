@@ -94,7 +94,7 @@ public class BoardController extends HttpServlet {
 				System.out.println("글 수정 요청");
 				sv = new UpdateService();
 				sv.execute(request, response);
-				response.sendRedirect("WebTemp/board_list.board");
+				response.sendRedirect("/WebTemp/board.board?bId=" + request.getParameter("bId"));
 				
 			case "delete":
 				System.out.println("삭제 요청");
@@ -111,4 +111,3 @@ public class BoardController extends HttpServlet {
 
 
 
-//깃허브가 잘 되나~
