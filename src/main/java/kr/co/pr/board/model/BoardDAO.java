@@ -53,7 +53,10 @@ public class BoardDAO implements IBoardDAO {
 	@Override
 	public List<BoardVO> listBoard() {
 		List<BoardVO> articles = new ArrayList<>();
-		String sql = "SELECT * FROM bbs ORDER BY board_id DESC";
+		String sql = "SELECT * FROM (SELECT * ROWNUM AS rn, tbl.* FROM"
+				+ "(SELECT * FROM bbs ORDER BY board_id DESC) tbl)"
+				+ "WHERE rn >" +(page.getPage() -1) * page.getCountPerPage()
+				+ "And rn <= " + (page.getPage() * page.getCountPerPage());
 		try(Connection conn = ds.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()) {

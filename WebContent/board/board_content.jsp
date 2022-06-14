@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <button type="button" class="btn btn-success" onclick="location.href='/WebTemp/boardlist.board';">목록</button>
                             <button type="button" class="btn btn-info" onclick="location.href='/WebTemp/modify.board?bId=${board.boardID}'" >수정</button>
-                            <button type="button" class="btn btn-default" onclick="location.href='/WepTemp/delete.board?bId=${board.boardID}'">삭제</button>
+                            <button type="button" class="btn btn-default" onclick="location.href='/WebTemp/delete.board?bId=${board.boardID}'">삭제</button>
                         </div>
 
                     </form>
