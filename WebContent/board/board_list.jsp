@@ -54,12 +54,13 @@
                             
                         </tr>
                     </thead>
+                    
                     <tbody>
                     <c:forEach var="b" items="${bList}">
                         <tr>
                             <td>${b.boardID}</td>
                             <td>
-                            	<a href="/WebTemp/content.board?bId=${b.boardID}">${b.title}</a>
+                            	<a href="/WebTemp/content.board?bId=${b.boardID}&page=${param.page}&cpp=${param.cpp}">${b.title}</a>
                             </td>
                             <td>${b.writer}</td>
                             
@@ -76,13 +77,24 @@
 
                 <div class="text-center">
                     <ul class="pagination pagination-sm">
-                        <li><a href="#">이전</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">다음</a></li>
+                    <!-- 이전 버튼 -->
+                    <c:if test="${pc.prev}">
+                        <li class="page-item"><a class="page-link" href="/WebTemp/list.board?page=${pc.beginPage-1}&cpp=${pc.paging.countPerPage}"
+                        style="background-color: #643691; margin-top: 0; height: 40px; color: white; border: 0px solid #f78f24; opacity: 0.8">이전</a></li>
+                        
+                     </c:if>   
+                    <!-- 숫자 버튼 -->
+                    <c:forEach var="num" begin="${pc.beginPage}" end="${pc.endPage}">
+                        <li class="page-item"><a href="/WebTemp/list.board?page=${num}&cpp=${pc.paging.countPerPage}" class="page-link"
+                        style="margin-top: 0; height: 40px; color: pink; border: 1px solid #643691; ${pageNum == pc.paging.page ? 'background-color: orange;' : ''}">${num}</a>
+                        </li>
+                    </c:forEach>
+                    <!-- 다음 버튼 -->
+                    <c:if test="${pc.next}">
+                        <li class="page-item"><a class="page-link" href="/WebTemp/list.board?page=${pc.endPage+1}&cpp=${pc.paging.countPerPage}"
+                        style="background-color: #643691; margin-top: 0; height: 40px; color: white; border: 0px solid #f78f24; opacity: 0.8">다음</a>
+                        </li>
+                    </c:if>
                     </ul>
                     <button class="btn btn-info pull-right" onclick="location.href='/WebTemp/write.board'">글쓰기</button>
                 </div>

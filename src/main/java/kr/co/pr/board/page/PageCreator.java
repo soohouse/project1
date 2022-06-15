@@ -13,7 +13,7 @@ public class PageCreator {
 	
 	private void calPage() {
 		
-		this.endPage = (int) Math.ceil(paging.getPage()/(double)this.displayBtn) * this.displayBtn;
+		endPage = (int) Math.ceil(paging.getPage()/(double)displayBtn) * displayBtn;
 		
 		//this.beginPage = (int) Math.floor(paging.getPage() / (double) paging.getCountPerPage()) * paging.getCountPerPage() +_1;
 		
@@ -24,7 +24,7 @@ public class PageCreator {
 		next = (totalCount <= (endPage * paging.getCountPerPage())) ? false : true;
 		
 		if(!next) {
-			endPage = (int) (Math.ceil(totalCount)/(double) paging.getCountPerPage());
+			endPage = (int) Math.ceil(totalCount/(double) paging.getCountPerPage());
 		}
 	}
 
@@ -42,7 +42,9 @@ public class PageCreator {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+		calPage();
 	}
+	
 
 	public int getBeginPage() {
 		return beginPage;

@@ -10,6 +10,8 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import kr.co.pr.board.page.PageVO;
+
 
 public class BoardDAO implements IBoardDAO {
 	
@@ -51,15 +53,15 @@ public class BoardDAO implements IBoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> listBoard() {
+	public List<BoardVO> listBoard(PageVO paging) {
 		List<BoardVO> articles = new ArrayList<>();
-		String sql = "SELECT * FROM (SELECT * ROWNUM AS rn, tbl.* FROM"
+		String sql = "SELECT * FROM (SELECT ROWNUM AS rn, tbl.* FROM"
 				+ "(SELECT * FROM bbs ORDER BY board_id DESC) tbl)"
-				+ "WHERE rn >" +(page.getPage() -1) * page.getCountPerPage()
-				+ "And rn <= " + (page.getPage() * page.getCountPerPage());
+				+ "WHERE rn >" +(paging.getPage()-1) * paging.getCountPerPage()
+				+ "And rn <= " + (paging.getPage() * paging.getCountPerPage());
 		try(Connection conn = ds.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery()) {
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+				ResultSet rs = pstmt.executeQuery(); 
 			while(rs.next()) {
 				BoardVO vo = new BoardVO(
 						rs.getInt("board_id"),
@@ -73,7 +75,7 @@ public class BoardDAO implements IBoardDAO {
 				
 			}
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return articles;
@@ -136,6 +138,22 @@ public class BoardDAO implements IBoardDAO {
 	public void upHit(int bId) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int countArticles() {
+		int count = 0;
+		String sql = "SELECT COUNT(*) FROM bbs";
+		try(Connection conn = ds.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if(rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 	
